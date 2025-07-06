@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynex SMP Season 3 EcoPvp - Minecraft Server</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      color: white;
+      background-color: black;
+      overflow-x: hidden;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+
+    .header {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding-top: 20px;
+      padding-bottom: 0; /* Dikurangi agar tidak terlalu jauh dari judul */
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    .header .button-container {
+      margin-bottom: 0; /* Hilangkan jarak bawah tombol */
+    }
+
+    .header .button {
+      display: inline-block;
+      padding: 15px 30px;
+      margin: 10px;
+      background-color: #263238;
+      border-radius: 12px;
+      font-size: 1.1em;
+      color: white;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    .header .button:hover {
+      background-color: #37474f;
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding-top: 40px; /* Dari 120px dikurangi agar lebih dekat ke tombol */
+      padding-bottom: 60px;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    h1 {
+      font-size: 2.8em;
+      background: linear-gradient(to right, #4fc3f7, #9575cd);
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-top: 0;
+      margin-bottom: 40px;
+    }
+
+    p {
+      font-size: 1.1em;
+      color: #ccc;
+      margin-bottom: 20px;
+    }
+
+    .ip-box {
+      display: inline-block;
+      font-size: 1.3em;
+      background-color: #263238;
+      padding: 15px 30px;
+      border-radius: 12px;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: background 0.3s;
+    }
+
+    .ip-box:hover {
+      background-color: #37474f;
+    }
+
+    .copied {
+      font-size: 0.95em;
+      margin-top: 10px;
+      color: #81c784;
+      display: none;
+    }
+
+    .features {
+      margin-top: 60px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      padding: 20px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .feature {
+      background-color: rgba(255, 255, 255, 0.05);
+      padding: 20px;
+      border-radius: 15px;
+      backdrop-filter: blur(5px);
+    }
+
+    .feature h2 {
+      margin-bottom: 10px;
+      font-size: 1.5em;
+    }
+
+    .testimonials {
+      margin-top: 60px;
+      text-align: center;
+    }
+
+    .testimonial-box {
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      margin: 20px 0;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .testimonial-box h3 {
+      font-size: 1.5em;
+      color: #4fc3f7;
+      margin-bottom: 15px;
+    }
+
+    .testimonial-box p {
+      font-size: 1.1em;
+      color: #ddd;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      font-size: 0.9em;
+      color: #777;
+    }
+
+    a {
+      color: #81c784;
+      text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+      .content {
+        padding-top: 30px;
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="space"></canvas>
+
+  <div class="header">
+    <div class="button-container">
+      <a href="https://toko.kynezeco.xyz" class="button">Kunjungi Toko</a>
+      <a href="https://discord.gg/GKR9KGsf3F" class="button">Gabung Discord</a>
+      <a href="https://chat.whatsapp.com/GozZC9cWycIJMD9JLaIj9d" class="button">Gabung WhatsApp</a>
+    </div>
+  </div>
+
+  <div class="content">
+    <h1>Kynex SMP Season 3 EcoCpvp Theme </h1>
+    <p>🚀 Minecraft Survival Multiplayer | Cpvp Eco | Event Seru | PvP!</p>
+
+    <div class="ip-box" onclick="copyIP()">
+      📡 IP Server Java: <strong id="ip-java">kynezeco.xyz</strong><br>
+      📡 IP Server Bedrock: <strong id="ip-bedrock">mc.kynezeco.xyz:25599</strong>
+    </div>
+    <div id="copied" class="copied">✅ IP berhasil disalin!</div>
+
+    <div class="features">
+      <div class="feature">
+        <h2>🔨 Survival & Build</h2>
+        <p>Bangun base impianmu dan jelajahi dunia Lindungi base mu dari Tukang Rusuh Alias Raid Di sini tampa Claim Land!</p>
+      </div>
+      <div class="feature">
+        <h2>⚔️ PvP & Event Mingguan</h2>
+        <p>Event kompetitif dan PvP yang seru tiap minggu!</p>
+      </div>
+      <div class="feature">
+        <h2>🎮 Custom Features</h2>
+        <p>Ekonomi, job, dan fitur eksklusif lainnya hanya di Kynex SMP!</p>
+      </div>
+    </div>
+
+    <div class="testimonials">
+      <h2>🌟 Testimoni Pengguna</h2>
+
+      <div class="testimonial-box">
+        <h3>Andi</h3>
+        <p>"Kynex SMP adalah server terbaik yang pernah saya mainkan! Fitur PvP dan eventnya sangat seru, dan komunitasnya ramah."</p>
+      </div>
+
+      <div class="testimonial-box">
+        <h3>Rina</h3>
+        <p>"Sangat menyenangkan bermain di Kynex SMP! Server ini sangat stabil dan selalu ada hal baru yang menarik untuk dijelajahi!"</p>
+      </div>
+
+      <div class="testimonial-box">
+        <h3>Joko</h3>
+        <p>"Saya suka banget dengan fitur custom yang ada di Kynex SMP! Gameplay yang berbeda dan unik dibandingkan server lain."</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 Kynex SMP • Gabung komunitas kami di 
+    <a href="https://discord.gg/yourlink">Discord</a>
+  </footer>
+
+  <script>
+    function copyIP() {
+      const ipJava = document.getElementById("ip-java").textContent;
+      const ipBedrock = document.getElementById("ip-bedrock").textContent;
+      navigator.clipboard.writeText(`Java: ${ipJava}, Bedrock: ${ipBedrock}`);
+      document.getElementById("copied").style.display = "block";
+      setTimeout(() => {
+        document.getElementById("copied").style.display = "none";
+      }, 2500);
+    }
+  </script>
+
+  <script>
+    const canvas = document.getElementById('space');
+    const ctx = canvas.getContext('2d');
+
+    let w = canvas.width = window.innerWidth;
+    let h = canvas.height = window.innerHeight;
+
+    const stars = [];
+    for (let i = 0; i < 150; i++) {
+      stars.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        radius: Math.random() * 1.5 + 0.5,
+        speed: Math.random() * 0.2 + 0.2
+      });
+    }
+
+    const shootingStars = [];
+    function createShootingStar() {
+      shootingStars.push({
+        x: Math.random() * w,
+        y: Math.random() * h / 2,
+        radius: Math.random() * 1.5 + 1,
+        speed: Math.random() * 0.5 + 0.2,
+        opacity: 1
+      });
+    }
+
+    setInterval(createShootingStar, 2000);
+
+    function animate() {
+      ctx.clearRect(0, 0, w, h);
+
+      ctx.fillStyle = 'white';
+      for (let star of stars) {
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+        ctx.fill();
+
+        star.y += star.speed;
+        if (star.y > h) star.y = 0;
+      }
+
+      for (let i = 0; i < shootingStars.length; i++) {
+        const star = shootingStars[i];
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
+        ctx.fill();
+
+        star.x += 0.1;
+        star.y += star.speed;
+        star.opacity -= 0.01;
+
+        if (star.opacity <= 0) shootingStars.splice(i, 1);
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+
+    window.addEventListener('resize', () => {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+    });
+  </script>
+
+</body>
+</html>
